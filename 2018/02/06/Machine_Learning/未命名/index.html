@@ -79,13 +79,21 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="幽州台">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="房价的问题假设我们现在已知一些房屋面积的大小和价格之间的关系(见下图),我们将如和去预测某个面积的价格，一个简单的方法是我们画一条直线，这条直线尽可能多的经过数据所分布的区域，然后根据这条直线来预测房屋价格。在机架学习中种问题具有以下特征：  样本中每一个输入值都有一个正确的输出值：监督学习 预测一个具体的输出值：回归  以上就解开了我们这片文章的内容：监督学习-回归。接下来我们将用数学的方法教你">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性回归">
+<meta property="og:url" content="http://yoursite.com/2018/02/06/Machine_Learning/未命名/index.html">
 <meta property="og:site_name" content="幽州台">
+<meta property="og:description" content="房价的问题假设我们现在已知一些房屋面积的大小和价格之间的关系(见下图),我们将如和去预测某个面积的价格，一个简单的方法是我们画一条直线，这条直线尽可能多的经过数据所分布的区域，然后根据这条直线来预测房屋价格。在机架学习中种问题具有以下特征：  样本中每一个输入值都有一个正确的输出值：监督学习 预测一个具体的输出值：回归  以上就解开了我们这片文章的内容：监督学习-回归。接下来我们将用数学的方法教你">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fo8zkjdk4xj31160d476q.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fo8zx5aeo6j30is0fwgnh.jpg">
+<meta property="og:image" content="https://ws2.sinaimg.cn/large/006tKfTcgy1fo91an2nawj310g0k6gv9.jpg">
+<meta property="og:updated_time" content="2018-02-08T06:55:29.274Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="幽州台">
+<meta name="twitter:title" content="线性回归">
+<meta name="twitter:description" content="房价的问题假设我们现在已知一些房屋面积的大小和价格之间的关系(见下图),我们将如和去预测某个面积的价格，一个简单的方法是我们画一条直线，这条直线尽可能多的经过数据所分布的区域，然后根据这条直线来预测房屋价格。在机架学习中种问题具有以下特征：  样本中每一个输入值都有一个正确的输出值：监督学习 预测一个具体的输出值：回归  以上就解开了我们这片文章的内容：监督学习-回归。接下来我们将用数学的方法教你">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fo8zkjdk4xj31160d476q.jpg">
 
 
 
@@ -115,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/02/06/Machine_Learning/未命名/"/>
 
 
 
 
 
-  <title>幽州台</title>
+  <title>线性回归 | 幽州台</title>
   
 
 
@@ -140,8 +148,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://your-url" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 
@@ -265,164 +272,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/06/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗仲虎　">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幽州台">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/06/hello-world/" itemprop="url">博客优化记录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T16:50:00+08:00">
-                2018-02-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Site/" itemprop="url" rel="index">
-                    <span itemprop="name">Site</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li style="list-style: none"><input type="checkbox" checked> 添加评论系统(2018-02-06) </li>
-<li style="list-style: none"><input type="checkbox" checked> 在左上角实现fork me on github（2018-02-07）</li>
-<li style="list-style: none"><input type="checkbox" checked> 添加站点访问量统计（2018-02-07）</li>
-<li style="list-style: none"><input type="checkbox" checked> 修改footer信息（2018-02-07）</li>
-</ul>
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -452,9 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/06/Machine_Learning/未命名/" itemprop="url">线性回归</a></h1>
+          <h1 class="post-title" itemprop="name headline">线性回归</h1>
         
 
         <div class="post-meta">
@@ -502,6 +352,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/06/Machine_Learning/未命名/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/02/06/Machine_Learning/未命名/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -526,9 +386,7 @@
       
 
       
-        
-          
-            <h4 id="房价的问题"><a href="#房价的问题" class="headerlink" title="房价的问题"></a>房价的问题</h4><p>假设我们现在已知一些房屋面积的大小和价格之间的关系(见下图),我们将如和去预测某个面积的价格，一个简单的方法是我们画一条直线，这条直线尽可能多的经过数据所分布的区域，然后根据这条直线来预测房屋价格。在机架学习中种问题具有以下特征：</p>
+        <h4 id="房价的问题"><a href="#房价的问题" class="headerlink" title="房价的问题"></a>房价的问题</h4><p>假设我们现在已知一些房屋面积的大小和价格之间的关系(见下图),我们将如和去预测某个面积的价格，一个简单的方法是我们画一条直线，这条直线尽可能多的经过数据所分布的区域，然后根据这条直线来预测房屋价格。在机架学习中种问题具有以下特征：</p>
 <ul>
 <li>样本中每一个输入值都有一个正确的输出值：<strong>监督学习</strong></li>
 <li>预测一个具体的输出值：<strong>回归</strong></li>
@@ -580,8 +438,6 @@
 <h4 id="代价方程"><a href="#代价方程" class="headerlink" title="代价方程"></a>代价方程</h4><h5 id="什么是代价方程"><a href="#什么是代价方程" class="headerlink" title="什么是代价方程"></a>什么是代价方程</h5><p>到底要怎么去尽可能的拟合和这直线和数据点？这个尽可能要做的事情就是得到一条直线，这条直线到所有已知点的距离平方和最小为，如果用J(θ0,θ1)来代表这个值，则J(θ0,θ1)可以表示为<br>$$<br>J(\theta_0, \theta<em>1) = \dfrac {1}{2m} \displaystyle \sum </em>{i=1}^m \left ( \hat{y}<em>{i}- y</em>{i} \right)^2 = \dfrac {1}{2m} \displaystyle \sum <em>{i=1}^m \left (h</em>\theta (x<em>{i}) - y</em>{i} \right)^2<br>$$<br>这个方程就是代价方程，很明显当直线穿所有点的时候J(θ0,θ1)=0，我们的目的就是通过调整θ0,θ1，求这个方程的最小值。</p>
 <p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fo91an2nawj310g0k6gv9.jpg" alt=""></p>
 <h5 id="代价方程的轮廓1"><a href="#代价方程的轮廓1" class="headerlink" title="代价方程的轮廓1"></a>代价方程的轮廓1</h5><h5 id="代价方程的轮廓2"><a href="#代价方程的轮廓2" class="headerlink" title="代价方程的轮廓2"></a>代价方程的轮廓2</h5>
-          
-        
       
     </div>
     
@@ -598,131 +454,32 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/06/Text/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗仲虎　">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幽州台">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/06/Text/" itemprop="url">Text</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T16:48:54+08:00">
-                2018-02-06
-              </time>
+              <a href="/2018/02/06/Text/" rel="next" title="Text">
+                <i class="fa fa-chevron-left"></i> Text
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
+              <a href="/2018/02/06/hello-world/" rel="prev" title="博客优化记录">
+                博客优化记录 <i class="fa fa-chevron-right"></i>
+              </a>
             
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -732,10 +489,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -743,6 +501,17 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+  
+
 
         </div>
         
@@ -763,8 +532,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -819,6 +597,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#房价的问题"><span class="nav-number">1.</span> <span class="nav-text">房价的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#符号的意义"><span class="nav-number">2.</span> <span class="nav-text">符号的意义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代价方程"><span class="nav-number">3.</span> <span class="nav-text">代价方程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#什么是代价方程"><span class="nav-number">3.1.</span> <span class="nav-text">什么是代价方程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代价方程的轮廓1"><span class="nav-number">3.2.</span> <span class="nav-text">代价方程的轮廓1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代价方程的轮廓2"><span class="nav-number">3.3.</span> <span class="nav-text">代价方程的轮廓2</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -954,6 +748,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1000,6 +798,30 @@
 
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'luohu',
+            repo: 'luohu.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'e714d0aa51f74861d28815e3f8abcedaf6788dc6',
+            
+                client_id: '31af4093040063e1c2c5'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
 
 
