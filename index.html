@@ -374,10 +374,10 @@
         
           
             <ul>
-<li style="list-style: none"><input type="checkbox" checked> 添加评论系统(2018-02-06) </li>
-<li style="list-style: none"><input type="checkbox" checked> 在左上角实现fork me on github（2018-02-07）</li>
-<li style="list-style: none"><input type="checkbox" checked> 添加站点访问量统计（2018-02-07）</li>
-<li style="list-style: none"><input type="checkbox" checked> 修改footer信息（2018-02-07）</li>
+<li>[x] 添加评论系统(2018-02-06) </li>
+<li>[x] 在左上角实现fork me on github（2018-02-07）</li>
+<li>[x] 添加站点访问量统计（2018-02-07）</li>
+<li>[x] 修改footer信息（2018-02-07）</li>
 </ul>
 <h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
@@ -435,7 +435,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/06/Machine_Learning/未命名/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/06/Machine_Learning/02线性回归/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="罗仲虎　">
@@ -454,7 +454,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/06/Machine_Learning/未命名/" itemprop="url">线性回归</a></h1>
+                <a class="post-title-link" href="/2018/02/06/Machine_Learning/02线性回归/" itemprop="url">线性回归</a></h1>
         
 
         <div class="post-meta">
@@ -466,7 +466,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T16:50:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T16:48:54+08:00">
                 2018-02-06
               </time>
             
@@ -528,177 +528,62 @@
       
         
           
-            <h4 id="房价的问题"><a href="#房价的问题" class="headerlink" title="房价的问题"></a>房价的问题</h4><p>假设我们现在已知一些房屋面积的大小和价格之间的关系(见下图),我们将如和去预测某个面积的价格，一个简单的方法是我们画一条直线，这条直线尽可能多的经过数据所分布的区域，然后根据这条直线来预测房屋价格。在机架学习中种问题具有以下特征：</p>
+            <h4 id="房价问题"><a href="#房价问题" class="headerlink" title="房价问题"></a>房价问题</h4><p>如果我们给出一组房屋面积和房间之间关系的属于，该如何用这组数据去预测某个房屋面积的价格？在机器学习中这个问题满足下面两个条件：</p>
 <ul>
-<li>样本中每一个输入值都有一个正确的输出值：<strong>监督学习</strong></li>
-<li>预测一个具体的输出值：<strong>回归</strong></li>
+<li>一组有确定输出值(房屋价格)得得输入值(房屋面积)：<strong>监督学习</strong></li>
+<li>根据一个输入值预测一个确定的输出值：<strong>回归</strong></li>
 </ul>
-<p>以上就解开了我们这片文章的内容：监督学习-回归。接下来我们将用数学的方法教你如何做到”<strong>尽可能</strong>“</p>
+<p>这就是本文中所要解释的话题：监督学习中的回归。如果把这组数据放在一个二维坐标内，然后来画一条直线，让这条直线尽可能的经过点所在的区域，则通过这条直线就可以预测房屋的价格，回归算法将叫你如何找到这条直线</p>
 <p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fo8zkjdk4xj31160d476q.jpg" alt=""></p>
-<h4 id="符号的意义"><a href="#符号的意义" class="headerlink" title="符号的意义"></a>符号的意义</h4><p>为了方便我们进行学习,我们首先要对一些公式符号进行约约定，参考实例数据集：</p>
+<h4 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h4><h5 id="符号的解释"><a href="#符号的解释" class="headerlink" title="符号的解释"></a>符号的解释</h5><div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">房间大小（input）</th>
-<th style="text-align:center">价格（output）</th>
+<th style="text-align:center">样例标号</th>
+<th style="text-align:center">房屋面积</th>
+<th>价格</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">2014</td>
-<td style="text-align:center">460</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">150</td>
+<td>15000</td>
 </tr>
 <tr>
-<td style="text-align:center">1416</td>
-<td style="text-align:center">232</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">120</td>
+<td>600</td>
 </tr>
 <tr>
-<td style="text-align:center">1534</td>
-<td style="text-align:center">315</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">60</td>
+<td>300</td>
 </tr>
 <tr>
-<td style="text-align:center">…..</td>
-<td style="text-align:center">….</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">70</td>
+<td>450</td>
 </tr>
 <tr>
+<td style="text-align:center">n</td>
+<td style="text-align:center">……</td>
+<td>….</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
 <td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
-<li>x(i)： 表示第i个输入值 。例如x(2)=1416</li>
-<li>y(i)：表示第i个输出值。例如y(3)=315</li>
-<li>(x(i),y(i))： 表示一个训练样本。例如(x(2),y(2))=（1416,232）</li>
-<li>m：表示训练样本的个数。表格中训练集合的个数就是m</li>
+<li>x(i)：第i个输入值。例如：x(1)=150</li>
+<li>y(i)：第i个输出值。例如：y(2)=600</li>
+<li>(x(i),y(i))：一组训练样例。例如: (x(3),y(3))=（60，300）</li>
+<li>m：训练样例组的个数。例如上面训练集的m=n</li>
 </ul>
-<p>有了上面的约定后，我能再来规范一下如何去描述我们所要解决的问题：</p>
-<blockquote>
-<p>given a training set, to learn a function h : X → Y so that h(x) is a “good” predictor for the corresponding value of y（给定一个数据集合，让机器学习算法去得到一个方程h，这个方程可以根据输入的x来预测输出的y）</p>
-</blockquote>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fo8zx5aeo6j30is0fwgnh.jpg" alt=""></p>
-<p>对于初学者我们将暂定这个方程式为一下方程，对的你没看错，就是一个非常简单的线性函数，当然这个方程也可以是一个更加复杂的方程，但是我们从这里起步学习，我们称下方程模式为<strong>线性回归模型</strong>（linear regression)，他还有另外一个名称叫<strong>单变量线性回归</strong>，这个单变量就指<br>$$<br>hθ(x)=θ0+θ1*x<br>$$</p>
-<h4 id="代价方程"><a href="#代价方程" class="headerlink" title="代价方程"></a>代价方程</h4><h5 id="什么是代价方程"><a href="#什么是代价方程" class="headerlink" title="什么是代价方程"></a>什么是代价方程</h5><p>到底要怎么去尽可能的拟合和这直线和数据点？这个尽可能要做的事情就是得到一条直线，这条直线到所有已知点的距离平方和最小为，如果用J(θ0,θ1)来代表这个值，则J(θ0,θ1)可以表示为<br>$$<br>J(\theta_0, \theta<em>1) = \dfrac {1}{2m} \displaystyle \sum </em>{i=1}^m \left ( \hat{y}<em>{i}- y</em>{i} \right)^2 = \dfrac {1}{2m} \displaystyle \sum <em>{i=1}^m \left (h</em>\theta (x<em>{i}) - y</em>{i} \right)^2<br>$$<br>这个方程就是代价方程，很明显当直线穿所有点的时候J(θ0,θ1)=0，我们的目的就是通过调整θ0,θ1，求这个方程的最小值。</p>
-<p><img src="https://ws2.sinaimg.cn/large/006tKfTcgy1fo91an2nawj310g0k6gv9.jpg" alt=""></p>
-<h5 id="代价方程的轮廓1"><a href="#代价方程的轮廓1" class="headerlink" title="代价方程的轮廓1"></a>代价方程的轮廓1</h5><h5 id="代价方程的轮廓2"><a href="#代价方程的轮廓2" class="headerlink" title="代价方程的轮廓2"></a>代价方程的轮廓2</h5>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/06/Text/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="罗仲虎　">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="幽州台">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/06/Text/" itemprop="url">Text</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-06T16:48:54+08:00">
-                2018-02-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
+<h4 id="代价方程"><a href="#代价方程" class="headerlink" title="代价方程"></a>代价方程</h4>
           
         
       
@@ -783,7 +668,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1024,6 +909,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
