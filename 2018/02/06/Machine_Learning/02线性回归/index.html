@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -81,7 +81,7 @@
 
 <meta name="description" content="房价问题如果我们给出一组房屋面积和房间之间关系的属于，该如何用这组数据去预测某个房屋面积的价格？在机器学习中这个问题满足下面两个条件：  一组有确定输出值(房屋价格)得得输入值(房屋面积)：监督学习 根据一个输入值预测一个确定的输出值：回归  这就是本文中所要解释的话题：监督学习中的回归。如果把这组数据放在一个二维坐标内，然后来画一条直线，让这条直线尽可能的经过点所在的区域，则通过这条直线就可以预">
 <meta property="og:type" content="article">
-<meta property="og:title" content="幽州台">
+<meta property="og:title" content="线性回归">
 <meta property="og:url" content="http://yoursite.com/2018/02/06/Machine_Learning/02线性回归/index.html">
 <meta property="og:site_name" content="幽州台">
 <meta property="og:description" content="房价问题如果我们给出一组房屋面积和房间之间关系的属于，该如何用这组数据去预测某个房屋面积的价格？在机器学习中这个问题满足下面两个条件：  一组有确定输出值(房屋价格)得得输入值(房屋面积)：监督学习 根据一个输入值预测一个确定的输出值：回归  这就是本文中所要解释的话题：监督学习中的回归。如果把这组数据放在一个二维坐标内，然后来画一条直线，让这条直线尽可能的经过点所在的区域，则通过这条直线就可以预">
@@ -95,9 +95,9 @@
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tKfTcgy1fo97p105i6j30we0h2alk.jpg">
 <meta property="og:image" content="https://ws3.sinaimg.cn/large/006tNc79gy1fo9ea2k2rqj311k0kidn1.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/006tNc79gy1fo9ehydf65j30j80dawfv.jpg">
-<meta property="og:updated_time" content="2018-02-08T14:33:22.400Z">
+<meta property="og:updated_time" content="2018-03-02T07:12:02.871Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="幽州台">
+<meta name="twitter:title" content="线性回归">
 <meta name="twitter:description" content="房价问题如果我们给出一组房屋面积和房间之间关系的属于，该如何用这组数据去预测某个房屋面积的价格？在机器学习中这个问题满足下面两个条件：  一组有确定输出值(房屋价格)得得输入值(房屋面积)：监督学习 根据一个输入值预测一个确定的输出值：回归  这就是本文中所要解释的话题：监督学习中的回归。如果把这组数据放在一个二维坐标内，然后来画一条直线，让这条直线尽可能的经过点所在的区域，则通过这条直线就可以预">
 <meta name="twitter:image" content="https://ws1.sinaimg.cn/large/006tKfTcgy1fo8zkjdk4xj31160d476q.jpg">
 
@@ -107,7 +107,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Gemini',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -135,7 +135,7 @@
 
 
 
-  <title> | 幽州台</title>
+  <title>线性回归 | 幽州台</title>
   
 
 
@@ -191,6 +191,16 @@
     <ul id="menu" class="menu">
       
         
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
@@ -237,26 +247,6 @@
               <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
             
             日程
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
-            
-            地图
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益
           </a>
         </li>
       
@@ -310,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">线性回归</h1>
         
 
         <div class="post-meta">
@@ -347,6 +337,17 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
                     <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/回归/" itemprop="url" rel="index">
+                    <span itemprop="name">回归</span>
                   </a>
                 </span>
 
@@ -508,7 +509,7 @@ J(\theta_0, \theta_1) = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left ( \hat{
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/02/06/hello-world/" rel="prev" title="博客优化记录">
+              <a href="/2018/02/06/Machine_Learning/04Octave:Matlab使用方法/" rel="prev" title="博客优化记录">
                 博客优化记录 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -598,7 +599,7 @@ J(\theta_0, \theta_1) = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left ( \hat{
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -608,10 +609,10 @@ J(\theta_0, \theta_1) = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left ( \hat{
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">2</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
